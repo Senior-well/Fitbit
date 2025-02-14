@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitbit OAuth Callback</title>
+    <script>
+        // Extract access token from URL and store it
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        const accessToken = params.get("access_token");
+
+        if (accessToken) {
+            // Save token in local storage or pass it to your main app
+            localStorage.setItem("fitbit_access_token", accessToken);
+            window.location.href = "index.html";  // Redirect to main page
+        } else {
+            document.body.innerHTML = "<h2>Failed to retrieve access token.</h2>";
+        }
+    </script>
+</head>
+<body>
+    <p>Processing OAuth response...</p>
+</body>
+</html>
